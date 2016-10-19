@@ -77,7 +77,7 @@
 							</div>
 
 							<div class="form-group has-feedback has-feedback-left">
-								<input type="text" class="form-control" placeholder="Contraseña">
+								<input type="password" class="form-control" placeholder="Contraseña">
 								<div class="form-control-feedback">
 									<i class="icon-lock2 text-muted"></i>
 								</div>
