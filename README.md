@@ -1,3 +1,3 @@
-# ClinicaDental
+# Ronal Vasquez, German Reyes
 
-Sistema Online para Clinicas dentales, desarrollado en php, sin ayuda de ningun framework.
+Desarrollo de sistemas
