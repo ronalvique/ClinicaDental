@@ -1,0 +1,6 @@
+/*+
+ * Formulario de nuevo usuario
+ */
+#form_nuevo_usuario .error{
+	color:red;
+}
