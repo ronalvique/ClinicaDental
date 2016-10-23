@@ -27,7 +27,7 @@
 
 	}
 ?>
-<?php include("includes/top_page.php"); ?>
+<?php include("includes/top_page_login.php"); ?>
 
 <body>
 
