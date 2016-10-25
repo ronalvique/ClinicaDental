@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	
 	/* Formulario de Nuevo_Usuario
 	* Validacion del formulario de nuevo usuario.
 	* Usando el plugin de validacion

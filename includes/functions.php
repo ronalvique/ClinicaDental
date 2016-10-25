@@ -23,7 +23,10 @@ define( 'SITE_URL', siteURL() );
 */
 function pluginValidaciones(){
  	$url_acutal =  $_SERVER['PHP_SELF'];
- 	if (strcasecmp($url_acutal, "/nuevo_usuario.php") == 0){
+ 	if (
+        strcasecmp($url_acutal, "/nuevo_usuario.php") == 0 ||
+        strcasecmp($url_acutal, "/establecimientos.php") == 0
+     ){
 
  		echo "\n";
  		echo "<!-- plugin de validacion de datos --> \n";
