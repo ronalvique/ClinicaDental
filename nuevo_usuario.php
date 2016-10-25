@@ -18,7 +18,7 @@
 				<div class="content">
 
 					<!-- Registration form -->
-					<form action="index/html" id="form_nuevo_usuario">
+					<form action="" id="form_nuevo_usuario" method="post">
 						<div class="row">
 							<div class="col-lg-6 col-lg-offset-3">
 								<div class="panel registration-form">
@@ -32,7 +32,7 @@
 											<div class="form-control-feedback">
 												<i class="icon-user-plus text-muted"></i>
 											</div>
-											<input type="text" id="usuario" class="form-control" placeholder="Usuario" name="usuario"  />
+											<input type="text" id="usuario" class="form-control" placeholder="Usuario" name="usuario" required />
 											
 										</div>
 
@@ -101,11 +101,32 @@
 											</div>
 										</div>
 
-								
+										<!-- tel-->
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group has-feedback">
+													<div class="form-control-feedback">
+														<i class="icon-phone text-muted"></i>
+													</div>
+													<input id="Tel_fijo" type="text" class="form-control" placeholder="Teléfono fijo" name="Tel_fijo">
+													
+												</div>
+											</div>
+
+											<div class="col-md-6">
+												<div class="form-group has-feedback">
+													<div class="form-control-feedback">
+														<i class="icon-mobile text-muted"></i>
+													</div>
+													<input id="Tel_celular" type="text" class="form-control" placeholder="Teléfono celular" correo" name="Tel_celular">
+													
+												</div>
+											</div>
+										</div>
 
 										<div class="text-right">
 											
-											<button type="submit" class="btn bg-teal-400 btn-labeled btn-labeled-right ml-10"><b><i class="icon-plus3"></i></b> Crear Usuario</button>
+											<button name="submit" type="submit" class="btn bg-teal-400 btn-labeled btn-labeled-right ml-10"><b><i class="icon-plus3"></i></b> Crear Usuario</button>
 										</div>
 									</div>
 								</div>

@@ -8,7 +8,7 @@ use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
 $paths = array(
-	__DIR__."/entidades"
+	__DIR__ . "/entidades"
 );
 
 $isDevMode = false;

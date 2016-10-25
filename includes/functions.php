@@ -1,4 +1,9 @@
 <?php
+
+/*
+ * Funcion que devuelve el url del site
+ * ejemplo http://clinicadental/
+*/
 function siteURL()
 {
     $protocol = 'http://';
@@ -7,6 +12,15 @@ function siteURL()
 }
 define( 'SITE_URL', siteURL() );
 
+
+/*
+ * Funcion para incluir el script
+ * de validacion de jquery. El cual
+ * se encarga de validad los formularios.
+ * Se necesita identificar en que paginas
+ * se incluira el script y llamar la funcion
+ * en el header, desde la funcion gancho.
+*/
 function pluginValidaciones(){
  	$url_acutal =  $_SERVER['PHP_SELF'];
  	if (strcasecmp($url_acutal, "/nuevo_usuario.php") == 0){
@@ -21,6 +35,49 @@ function pluginValidaciones(){
  	}
  }
 
+ /* 
+  * Devuelve la contraseña enviada
+  * encriptada con la funcion crypy
+  * y con salto aleatorio.
+ */
+function encriptarContrasenia($contrasenia) { 
+    $caracteres = "abcdefghijklmnopqrstuvwxyz1234567890"; 
+    $nueva_clave = ""; 
+    for ($i = 5; $i < 35; $i++) { 
+        $nueva_clave .= $caracteres[rand(5,35)]; 
+    };
+
+    $valor = "07";
+	$salt = '$2y$' . $valor . '$' . $nueva_clave . '$';
+
+	return crypt($contrasenia,$salt);
+   
+};
+
+/*
+ * Funcion para comprobar si la contraseña
+ * enviada es correcta, es decir la decrypta.
+ * devuelve true si coincide, false caso contrario.
+ * Parametros:
+ * 	$contrasenia = contrasenia que es obtenida del formulario.
+ *	$contrasenia_guardada = contraseña guardada en la base de datos.
+*/
+function verificarContrasenia($contrasenia,$contrasenia_guardada){
+
+	if( password_verify($contrasenia,encriptarContrasenia($contrasenia_guardada))){
+		return true;
+	} else {
+		return false;
+	}
+
+}
+
+
+/*
+ * Gancho para ejecutar las funciones
+ * que son requeridas que escriban en
+ * el header, como por ejemplo scripts.
+*/
  function wp_head(){
  	pluginValidaciones();
  }
