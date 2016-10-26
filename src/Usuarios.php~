@@ -1,0 +1,88 @@
+<?php
+
+
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Usuarios
+ *
+ * @ORM\Table(name="Usuarios")
+ * @ORM\Entity
+ */
+class Usuarios
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Nombre", type="string", length=150, nullable=false)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Tel_Fijo", type="string", length=15, nullable=true)
+     */
+    private $telFijo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Tel_Celular", type="string", length=15, nullable=true)
+     */
+    private $telCelular;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Usuario", type="string", length=20, nullable=false)
+     */
+    private $usuario;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Contrasenia", type="string", length=150, nullable=false)
+     */
+    private $contrasenia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Correo", type="string", length=100, nullable=true)
+     */
+    private $correo;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="Fecha_Alta", type="date", nullable=false)
+     */
+    private $fechaAlta;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Perfiles", mappedBy="usuarios")
+     */
+    private $perfiles;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->perfiles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

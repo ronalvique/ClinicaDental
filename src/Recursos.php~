@@ -1,0 +1,53 @@
+<?php
+
+
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Recursos
+ *
+ * @ORM\Table(name="Recursos")
+ * @ORM\Entity
+ */
+class Recursos
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Nombre_Recurso", type="string", length=100, nullable=false)
+     */
+    private $nombreRecurso;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="Fecha_registro", type="date", nullable=false)
+     */
+    private $fechaRegistro;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Perfiles", mappedBy="recursos")
+     */
+    private $perfiles;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->perfiles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
