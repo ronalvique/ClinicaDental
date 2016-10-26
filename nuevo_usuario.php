@@ -63,7 +63,7 @@
 													<div class="form-control-feedback">
 														<i class="icon-user-lock text-muted"></i>
 													</div>
-													<input id="Contrasenia" type="password" class="form-control" placeholder="Contraseña" name="Contrasenia" required="true" >
+													<input id="contrasenia" type="password" class="form-control" placeholder="Contraseña" name="contrasenia" required="true" >
 													
 												</div>
 											</div>
@@ -85,7 +85,7 @@
 													<div class="form-control-feedback">
 														<i class="icon-mention text-muted"></i>
 													</div>
-													<input id="Correo" type="email" class="form-control" placeholder="Correo" name="Correo" required>
+													<input id="correo" type="email" class="form-control" placeholder="Correo" name="correo" required>
 													
 												</div>
 											</div>
@@ -95,7 +95,7 @@
 													<div class="form-control-feedback">
 														<i class="icon-mention text-muted"></i>
 													</div>
-													<input id="Confirmar_correo" type="email" class="form-control" placeholder="Confirmar correo" correo" name="Confirmar_correo" required>
+													<input id="confirmar_correo" type="email" class="form-control" placeholder="Confirmar correo" correo" name="confirmar_correo" required>
 													
 												</div>
 											</div>
