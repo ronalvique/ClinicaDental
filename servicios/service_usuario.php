@@ -3,15 +3,21 @@
 		if ( empty($_POST['usuario']) || 
 			 empty($_POST['nombre']) ||
 			 empty($_POST['apellido']) || 
-		     empty($_POST['Contrasenia']) ||
+		     empty($_POST['contrasenia']) ||
 		     empty($_POST['confirmar_contrasenia']) ||
-		     empty($_POST['Correo']) || 
-		     empty($_POST['Confirmar_correo'])
+		     empty($_POST['correo']) || 
+		     empty($_POST['confirmar_correo'])
 		   ){
 				
 				header('Content-type: application/json');
 				$errores = array(
-					'error' => 'campo_vacio'
+					'error' => 'campo_vacio',
+					'nombre' => $_POST['nombre'],
+					'apellido' => $_POST['apellido'],
+					'contrasenia' => $_POST['contrasenia'],
+					'confirmar_contrasenia' => $_POST['confirmar_contrasenia'],
+					'correo' => $_POST['correo'],
+					'confirmar_correo' => $_POST['confirmar_correo']
 				);
 
 				echo json_encode($errores);
@@ -30,7 +36,7 @@
 										 Tel_Fijo,
 										 Tel_celular) 
 							     values(" . $_POST['usuario'] . "," 
-							              . $_POST['Contrasenia'] . ")";
+							              . $_POST['contrasenia'] . ")";
 			echo $sql;
 		
 		}

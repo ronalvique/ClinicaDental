@@ -108,7 +108,7 @@
 													<div class="form-control-feedback">
 														<i class="icon-phone text-muted"></i>
 													</div>
-													<input id="Tel_fijo" type="text" class="form-control" placeholder="Teléfono fijo" name="Tel_fijo">
+													<input id="tel_fijo" type="text" class="form-control" placeholder="Teléfono fijo" name="tel_fijo">
 													
 												</div>
 											</div>
@@ -118,7 +118,7 @@
 													<div class="form-control-feedback">
 														<i class="icon-mobile text-muted"></i>
 													</div>
-													<input id="Tel_celular" type="text" class="form-control" placeholder="Teléfono celular" correo" name="Tel_celular">
+													<input id="tel_celular" type="text" class="form-control" placeholder="Teléfono celular" correo" name="tel_celular">
 													
 												</div>
 											</div>
