@@ -9,8 +9,8 @@ $(document).ready(function(){
 	* Version 1.0
 	*/
 	$("#form_nuevo_usuario").validate({
-			
-			rules: {
+		ignore: ":hidden",
+		rules: {
 				usuario: {
 					required:    true,
 					minlength:   6				
@@ -33,7 +33,7 @@ $(document).ready(function(){
 				confirmar_contrasenia:{
 					required:    true,
 					minlength:   6,
-					equalTo:     "#Contrasenia"
+					equalTo:     "#contrasenia"
 				},
 				Correo:{
 					required:    true,
@@ -42,10 +42,10 @@ $(document).ready(function(){
 				Confirmar_correo:{
 					required:    true,
 					email:       true,
-					equalTo:     "#Correo"
+					equalTo:     "#correo"
 				}
-			},
-			messages: {
+		},
+		messages: {
 				usuario: {
 					required:    "Este campo es requerido",
 					minlength:   "El usuario debe tener mas de 6 caracteres"
@@ -53,12 +53,12 @@ $(document).ready(function(){
 				nombre: {
 					required:    "Este campo es requerido",
 					minlength:   "El nombre debe tener mas de 3 caracteres",
-					lettersonly: "El campo solo debe tener letras"
+					lettersonly: "El campo solo debe tener letras sin espacios"
 				},
 				apellido:{
 					required:    "Este campo es requerido",
 					minlength:   "El nombre debe tener mas de 3 caracteres",
-					lettersonly: "El campo solo debe tener letras"
+					lettersonly: "El campo solo debe tener letras sin espacios"
 				},
 				Contrasenia:{
 					required:    "Este campo es requerido",
@@ -80,10 +80,28 @@ $(document).ready(function(){
 					email:       "Introduce un correo valido",
 					equalTo:     "Los correos no son identicos"
 				}
-			}
-		});
+		},
+		submitHandler: function (form) {
+             $.ajax({
+                 type: "POST",
+                 url: "/servicios/service_usuario.php",
+                 data: $(form).serialize(),
+                 dataType: 'json',
+                 success: function (e) {
+                 	
+                     if(e.hasOwnProperty('mensajes'))
+                     {
+                     	alert("Usuario Creado: " + e.mensajes);
+                     	window.location.reload();
+                     } else{
+                     	alert("Error: \n" + e.mensajes);
+                     }
 
-	
+                 }
+             });
+             return false; // required to block normal submit since you used ajax
+         }
+	});
 
 });
 

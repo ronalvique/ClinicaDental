@@ -17,6 +17,7 @@
 				<!-- Content area -->
 				<div class="content">
 
+
 					<!-- Registration form -->
 					<form action="" id="form_nuevo_usuario" method="post">
 						<div class="row">

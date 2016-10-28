@@ -1,6 +1,9 @@
 <?php
 	require '../config.php';
-		if ( empty($_POST['usuario']) || 
+	require_once '../src/Usuarios.php';
+	require_once '../includes/functions.php';
+
+		if ( empty($_POST['usuario']) ||
 			 empty($_POST['nombre']) ||
 			 empty($_POST['apellido']) || 
 		     empty($_POST['contrasenia']) ||
@@ -30,30 +33,31 @@
 			echo json_encode($errores);
 		} else {
 			
-			
-			mysql_connect($dbParams['host'],$dbParams['user'],$dbParams['password'])or die ('Ha fallado la conexión: '.mysql_error());
-			mysql_select_db($dbParams['dbname'])or die ('Error al seleccionar la Base de Datos: '.mysql_error());
-
 			$Tel_Fijo = (isset($_POST['tel_fijo'])) ? $_POST['tel_fijo'] : "";
 			$Tel_celular = (isset($_POST['tel_celular'])) ? $_POST['tel_celular'] : "";
 
-			$sql = "insert into usuarios(Usuario,
-										 Nombre,
-										 Contrasenia,
-										 Correo,
-										 Fecha_Alta,
-										 Tel_Fijo,
-										 Tel_celular) 
-							     values(" 
-							             . "'" . $_POST['usuario'] . "'," 
-							             . "'" . $_POST['nombre'] . " " . $_POST['apellido'] . "',"
-							             . "'" . $_POST['contrasenia'] . "',"
-							             . "'" . $_POST['correo'] . "',"
-							             . "'" . date('d-m-y') . "',"
-							             . "'" . $Tel_Fijo . "',"
-							             . "'" . $Tel_celular . "')";
-			echo $sql;
-		
+
+
+			$fecha = new DateTime(date('Y-m-d H:i:s.u T'));
+			/*Clase Usuario*/
+			$usuario = new Usuarios();
+
+			$usuario->setUsuario($_POST['usuario']);
+			$usuario->setNombre($_POST['nombre'] . " " . $_POST['apellido'] );
+			$usuario->setContrasenia(encriptarContrasenia($_POST['contrasenia']));
+			$usuario->setCorreo($_POST['correo']);
+			$usuario->setFechaAlta($fecha);
+			$usuario->setTelFijo($Tel_Fijo);
+			$usuario->setTelCelular($Tel_celular);
+
+			$entityManager->persist($usuario);
+			$entityManager->flush();
+
+			$mensaje = array(
+				'mensajes' =>  $usuario->getUsuario()
+			);
+
+			echo json_encode($mensaje);
 		}
 	
 ?>

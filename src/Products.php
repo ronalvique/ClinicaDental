@@ -5,8 +5,6 @@
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Products
- *
  * @ORM\Table(name="products")
  * @ORM\Entity
  */
