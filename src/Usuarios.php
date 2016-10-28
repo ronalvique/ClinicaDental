@@ -71,6 +71,13 @@ class Usuarios
     private $fechaAlta;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="Estado", type="boolean", nullable=false)
+     */
+    private $estado;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Perfiles", mappedBy="usuarios")
@@ -255,6 +262,29 @@ class Usuarios
     public function getFechaAlta()
     {
         return $this->fechaAlta;
+    }
+
+    /**
+     * Set estado
+     *
+     * @param boolean $estado
+     * @return Usuarios
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return boolean 
+     */
+    public function getEstado()
+    {
+        return $this->estado;
     }
 
     /**

@@ -49,6 +49,7 @@
 			$usuario->setFechaAlta($fecha);
 			$usuario->setTelFijo($Tel_Fijo);
 			$usuario->setTelCelular($Tel_celular);
+			$usuario->setEstado(1);
 
 			$entityManager->persist($usuario);
 			$entityManager->flush();

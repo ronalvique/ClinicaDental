@@ -71,6 +71,13 @@ class Usuarios
     private $fechaAlta;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="Estado", type="boolean", nullable=false)
+     */
+    private $estado;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Perfiles", mappedBy="usuarios")
