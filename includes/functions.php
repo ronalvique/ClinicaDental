@@ -25,7 +25,8 @@ function pluginValidaciones(){
  	$url_acutal =  $_SERVER['PHP_SELF'];
  	if (
         strcasecmp($url_acutal, "/nuevo_usuario.php") == 0 ||
-        strcasecmp($url_acutal, "/establecimientos.php") == 0
+        strcasecmp($url_acutal, "/establecimientos.php") == 0 ||
+        strcasecmp($url_acutal, "/login.php") == 0
      ){
 
  		echo "\n";
@@ -67,7 +68,7 @@ function encriptarContrasenia($contrasenia) {
 */
 function verificarContrasenia($contrasenia,$contrasenia_guardada){
 
-	if( password_verify($contrasenia,encriptarContrasenia($contrasenia_guardada))){
+	if( password_verify($contrasenia,$contrasenia_guardada)){
 		return true;
 	} else {
 		return false;

@@ -4,3 +4,6 @@
 #form_nuevo_usuario .error{
 	color:red;
 }
+#form_login .error{
+	color: red;
+}

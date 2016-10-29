@@ -1,5 +1,5 @@
 <?php
-	require '../config.php';
+	require '../bootstrap.php';
 	require_once '../src/Usuarios.php';
 	require_once '../includes/functions.php';
 
@@ -32,31 +32,42 @@
 			$errores = array('error' => 'El correo no coincide');
 			echo json_encode($errores);
 		} else {
-			
-			$Tel_Fijo = (isset($_POST['tel_fijo'])) ? $_POST['tel_fijo'] : "";
-			$Tel_celular = (isset($_POST['tel_celular'])) ? $_POST['tel_celular'] : "";
+
+		    $consulta = $entityManager->getRepository('Usuarios')->findOneBy(
+                                                                                array('usuario' => $_POST['usuario'],
+                                                                                    'estado' => 1
+                                                                                )
+                                                                            );
+            if($consulta == NULL) {
+
+                $Tel_Fijo = (isset($_POST['tel_fijo'])) ? $_POST['tel_fijo'] : "";
+                $Tel_celular = (isset($_POST['tel_celular'])) ? $_POST['tel_celular'] : "";
 
 
+                $fecha = new DateTime(date('Y-m-d H:i:s.u T'));
+                /*Clase Usuario*/
+                $usuario = new Usuarios();
 
-			$fecha = new DateTime(date('Y-m-d H:i:s.u T'));
-			/*Clase Usuario*/
-			$usuario = new Usuarios();
+                $usuario->setUsuario($_POST['usuario']);
+                $usuario->setNombre($_POST['nombre'] . " " . $_POST['apellido']);
+                $usuario->setContrasenia(encriptarContrasenia($_POST['contrasenia']));
+                $usuario->setCorreo($_POST['correo']);
+                $usuario->setFechaAlta($fecha);
+                $usuario->setTelFijo($Tel_Fijo);
+                $usuario->setTelCelular($Tel_celular);
+                $usuario->setEstado(1);
 
-			$usuario->setUsuario($_POST['usuario']);
-			$usuario->setNombre($_POST['nombre'] . " " . $_POST['apellido'] );
-			$usuario->setContrasenia(encriptarContrasenia($_POST['contrasenia']));
-			$usuario->setCorreo($_POST['correo']);
-			$usuario->setFechaAlta($fecha);
-			$usuario->setTelFijo($Tel_Fijo);
-			$usuario->setTelCelular($Tel_celular);
-			$usuario->setEstado(1);
+                $entityManager->persist($usuario);
+                $entityManager->flush();
 
-			$entityManager->persist($usuario);
-			$entityManager->flush();
-
-			$mensaje = array(
-				'mensajes' =>  $usuario->getUsuario()
-			);
+                $mensaje = array(
+                    'mensajes' => $usuario->getUsuario()
+                );
+            } else {
+                $mensaje = array(
+                    'error' => 'Usuario ya existe, intenta con otro'
+                );
+            }
 
 			echo json_encode($mensaje);
 		}
