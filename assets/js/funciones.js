@@ -6,7 +6,7 @@ $(document).ready(function(){
 	* de jquery.
 	* --Este plugin se debe añadir desde el archivo functions --
 	* Autor: Ronal Vasquez
-	* Version 1.0
+	* Version 1.5
 	*/
 	$("#form_nuevo_usuario").validate({
 		ignore: ":hidden",
@@ -94,13 +94,45 @@ $(document).ready(function(){
                      	alert("Usuario Creado: " + e.mensajes);
                      	window.location.reload();
                      } else{
-                     	alert("Error: \n" + e.mensajes);
+                     	alert("Error: \n" + e.error);
                      }
 
                  }
              });
              return false; // required to block normal submit since you used ajax
          }
+	});
+
+
+	/*
+	 * Formulario: Login.php
+	 * Validacion de los campos del login.
+	 * Autor: Ronal Vasquez
+	 * Version: 1.0
+	*/
+	$('#form_login').validate({
+		ignore: ":hidden",
+		rules:{
+			usuario:{
+				required: true
+			},
+			contrasenia: {
+				required: true
+			}
+		},
+		messages:{
+			usuario:{
+				required: "Por favor ingresa tu usuario"
+			},
+			contrasenia:{
+				required: "Por favor ingresa tu contraseña"
+			}
+		},
+		submitHandler: function(form){
+			form.submit();
+		}
+
+
 	});
 
 });
