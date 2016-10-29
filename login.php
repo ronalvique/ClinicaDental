@@ -19,8 +19,8 @@ if (isset($_POST['submit'])){
 
 	if($usuario == NULL)
 	{
-		header("Location: ./login.php");
-		exit();
+		//header("Location: ./login.php");
+		//exit();
 	} else{
 
 		if( password_verify($_POST['contrasenia'],$usuario->getContrasenia()) ){
@@ -80,7 +80,9 @@ if (isset($_POST['submit'])){
 									<i class="icon-lock2 text-muted"></i>
 								</div>
 								<input type="password" id="contrasenia" class="form-control" placeholder="Contraseña" name="contrasenia" required>
-								
+								<?php if (isset($_POST['submit'])){ ?>
+									<label class="error">usuario/contraseña incorrectas</label>
+								<?php } ?>
 							</div>
 
 							<div class="form-group">

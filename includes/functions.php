@@ -78,10 +78,32 @@ function verificarContrasenia($contrasenia,$contrasenia_guardada){
 
 
 /*
+ * Funcion para validar logue
+ * estara disponible en todas las paginas
+ * ya que se ejecutara en el gancho 
+*/
+ function logueado(){
+  session_start();
+  $url_acutal =  $_SERVER['PHP_SELF'];
+  if (strcasecmp($url_acutal, "/login.php") <> 0){
+    if ( !isset($_SESSION['usuario']) )
+      header('Location: /login.php');
+  }
+ }
+
+ function deslogueo{
+  session_start();
+  $_SESSION = array();
+  session_destroy();
+  header('Location /login.php')
+ }
+
+/*
  * Gancho para ejecutar las funciones
  * que son requeridas que escriban en
  * el header, como por ejemplo scripts.
 */
  function wp_head(){
  	pluginValidaciones();
+  logueado();
  }
