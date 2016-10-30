@@ -91,12 +91,7 @@ function verificarContrasenia($contrasenia,$contrasenia_guardada){
   }
  }
 
- function deslogueo{
-  session_start();
-  $_SESSION = array();
-  session_destroy();
-  header('Location /login.php')
- }
+ 
 
 /*
  * Gancho para ejecutar las funciones

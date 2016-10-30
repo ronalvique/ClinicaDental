@@ -3,18 +3,28 @@ require 'bootstrap.php';
 require_once 'src/Usuarios.php';
 require_once 'includes/functions.php';
 require_once 'includes/functions.php';
-
+/*
 $consulta = $entityManager->getRepository('Usuarios')->findOneBy(
 	array('usuario' => 'german',
 		  'estado' => true
 	     )
-);
+);*/
+$fecha = new DateTime(date('Y-m-d H:i:s.u T'));
+/*Clase Usuario*/
+                $usuario = new Usuarios();
 
-if( password_verify('holahola',$consulta->getContrasenia() )){
+                $usuario->setUsuario(234234);
+                $usuario->setNombre('Ronal Vique');
+                $usuario->setContrasenia(encriptarContrasenia("dfsdfsd"));
+                $usuario->setCorreo('ronal.vasquez@go.com.hn');
+                $usuario->setFechaAlta($fecha);
+                $usuario->setTelFijo('2543534543');
+                $usuario->setTelCelular('993432423');
+                $usuario->setEstado(1);
 
-	echo "b => " . encriptarContrasenia('holahola');
-}else {
+                $entityManager->persist($usuario);
+                $entityManager->flush();
 
-	echo "r  =>  " . encriptarContrasenia('holahola');
-	echo "<br> v  =>" . $consulta->getContrasenia();
-}
+echo "<pre>";
+	var_dump($usuario);
+echo "</pre>";
