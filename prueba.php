@@ -13,9 +13,9 @@ $fecha = new DateTime(date('Y-m-d H:i:s.u T'));
 /*Clase Usuario*/
                 $usuario = new Usuarios();
 
-                $usuario->setUsuario(234234);
+                $usuario->setUsuario('ronalvasquez44');
                 $usuario->setNombre('Ronal Vique');
-                $usuario->setContrasenia(encriptarContrasenia("dfsdfsd"));
+                $usuario->setContrasenia(encriptarContrasenia('123456'));
                 $usuario->setCorreo('ronal.vasquez@go.com.hn');
                 $usuario->setFechaAlta($fecha);
                 $usuario->setTelFijo('2543534543');
@@ -27,4 +27,3 @@ $fecha = new DateTime(date('Y-m-d H:i:s.u T'));
 
 echo "<pre>";
 	var_dump($usuario);
-echo "</pre>";
