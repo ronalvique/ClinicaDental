@@ -3,6 +3,11 @@
 	require_once '../src/Usuarios.php';
 	require_once '../includes/functions.php';
 
+	/*
+	 * Accion  = 1
+	 * significa nuevo usuario.
+	*/
+	if($_POST['accion'] == 1){
 		if ( empty($_POST['usuario']) ||
 			 empty($_POST['nombre']) ||
 			 empty($_POST['apellido']) || 
@@ -71,5 +76,73 @@
 
 			echo json_encode($mensaje);
 		}
+	} elseif ($_POST['accion'] == 2) {
+		
+		$eliminar = $entityManager->getRepository('Usuarios')->findOneBy(array('id'=>$_POST['id']));
+		
+		try {
+			
+			if(!$eliminar){
+				throw new Exception("id de usuario no encontrado",0);
+				
+			}
+
+			$eliminar->setEstado(0);
+			$entityManager->flush();
+			echo json_encode(array('Id' => $eliminar->getId()));
+
+
+		}
+		catch (Exception $e){
+			echo json_encode(array("error" => $e->getMessage()));
+		}
+		
+
+
+	} elseif ($_POST['accion'] == 3){
+		$actualizar = $entityManager->getRepository('Usuarios')->find($_POST['id']);
+		
+		try{
+
+			/*
+			 * comprobar que exista el id.
+			*/
+			if(!$actualizar){
+				throw new Exception("id de usuario no encontrado",0);
+				
+			}
+
+			// comprobar si los campos estan vacios
+			if ( empty($_POST['usuario']) ||
+			     empty($_POST['nombre']) ||
+				 empty($_POST['apellido']) || 
+			     empty($_POST['correo']) || 
+			     empty($_POST['confirmar_correo'])
+		   ){
+				throw new Exception("faltas campos, por favor rellena todos", 0);
+			}
+
+			//comprobar si los correos son iguales
+			if (strcasecmp($_POST['correo'], $_POST['confirmar_correo']) <> 0){
+				throw new Exception("los correos no son iguales", 0);
+				
+			}
+
+			$actualizar->setNombre($_POST['nombre'] . " " . $_POST['apellido']);
+			$actualizar->setCorreo($_POST['correo']);
+			$actualizar->setTelFijo($_POST['tel_fijo']);
+			$actualizar->setTelCelular($_POST['tel_celular']);
+
+			$entityManager->persist($actualizar);
+			$entityManager->flush();
+
+			echo json_encode(array('Id' => $actualizar->getId()));
+			
+
+
+		} catch (Exception $e){
+			echo json_encode(array("error" => $e->getMessage()));
+		}
+	}
 	
 ?>

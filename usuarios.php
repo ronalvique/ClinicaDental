@@ -3,7 +3,7 @@
 	* Llamado a archivo top_page
 	* Incluye el archivo functions
 	*/
-	include("includes/top_page.php"); 
+	include("includes/top_page_usuarios.php"); 
 	require 'bootstrap.php';
 	require_once 'src/Usuarios.php';
 
@@ -42,6 +42,7 @@
 							<h5 class="panel-title">Listado de Usuarios</h5>
 							<div class="heading-elements">
 								<ul class="icons-list">
+								    <li><a href="/nuevo_usuario.php" class="label label-success" style="padding: 5px;"> Nuevo Usuario</a></li>
 			                		<li><a data-action="collapse"></a></li>
 			                		<!--<li><a data-action="reload"></a></li>-->
 			                		<!--<li><a data-action="close"></a></li>-->
@@ -68,7 +69,7 @@
 								</thead>
 								<tbody>
 								<?php
-									$usuarios= $entityManager->getRepository('Usuarios')->findAll();
+									$usuarios= $entityManager->getRepository('Usuarios')->findAll(array(), array('nombre'=>'desc'));
 									foreach ($usuarios as $row) {
 									 	echo "<tr>";
 									 		echo "<td>" . $row->getId()   . "</td>";
@@ -77,24 +78,34 @@
 									 		echo "<td>" . $row->getCorreo() . "</td>";
 									 		echo "<td>" ;
 									 			if ($row->getEstado() == 1)
-									 				echo  '<span class="label label-success">Activo</span>';
+									 				echo  '<span class="label label-success elim' . $row->getId() .'">Activo</span>';
 									 			else
-									 				echo '<span class="label label-default">Inactivo</span>';
+									 				echo '<span class="label label-default elim'. $row->getId() .'">Eliminado</span>';
 									 		echo "</td>";
-									 		echo '<td class="text-center">
-													<ul class="icons-list">
-														<li class="dropdown">
-															<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-																<i class="icon-menu9"></i>
-															</a>
+									 		
+									 		if ($row->getEstado() == 1){
+										 		echo '<td class="text-center">
+														<ul class="icons-list ul' . $row->getId() . '">
+															<li class="dropdown">
+																<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+																	<i class="icon-menu9"></i>
+																</a>
 
-															<ul class="dropdown-menu dropdown-menu-right">
-																<li id="' . $row->getId() . '"><a><i></i> Editar</a></li>
-																<li id="' .$row->getId() . '"><a><i></i> Eliminar</a></li>
-															</ul>
-														</li>
-													</ul>
-												</td>';
+																<ul class="dropdown-menu dropdown-menu-right">
+																	<li><a href="/modificacion_usuario.php?id=' . $row->getId() . '" class="form_usuario_opciones" data-opcion="editar" id="' . $row->getId()  .'"><i></i> Editar</a></li>
+																	<li><a class="form_usuario_opciones " data-opcion="eliminar" id="'. $row->getId() .'"><i></i> Eliminar</a></li>
+																</ul>
+															</li>
+														</ul>
+													</td>';
+									 		
+											}else{
+												echo '<td class="text-center">
+														<ul class="icons-list">
+															
+														</ul>
+													</td>';
+											}
 									 	echo "</tr>";
 
 									 } 
@@ -106,11 +117,11 @@
 					</div>
 					<!-- /basic responsive table -->
 
-
+					<br />
 					
 
 
-					
+				
 
 
 					<?php include("includes/footer.php"); ?>

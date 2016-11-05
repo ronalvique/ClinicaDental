@@ -7,3 +7,6 @@
 #form_login .error{
 	color: red;
 }
+#form_modificacion_usuario .error{
+	color: red;
+}

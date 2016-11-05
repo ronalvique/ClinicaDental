@@ -17,33 +17,40 @@
 				<!-- Content area -->
 				<div class="content">
 
+				<?php
+					require 'bootstrap.php';
+					require_once 'src/Usuarios.php';
 
+					$usuario = $entityManager->getRepository('Usuarios')->find($_GET['id']);
+
+				?>
 					<!-- Registration form -->
-					<form action="" id="form_nuevo_usuario" method="post">
+					<form action="" id="form_modificacion_usuario" method="post">
 						<div class="row">
 							<div class="col-lg-6 col-lg-offset-3">
 								<div class="panel registration-form">
 									<div class="panel-body">
 										<div class="text-center">
 											<div class="icon-object border-success text-success"><i class="icon-plus3"></i></div>
-											<h5 class="content-group-lg">Crear Cuenta de usuario <small class="display-block">Ingresa los datos</small></h5>
+											<h5 class="content-group-lg">Modificación de cuenta de usuario <small class="display-block">Actualiza los datos</small></h5>
 										</div>
 
 										<div class="form-group has-feedback">
 											<div class="form-control-feedback">
 												<i class="icon-user-plus text-muted"></i>
 											</div>
-											<input type="text" id="usuario" class="form-control" placeholder="Usuario" name="usuario" required />
+											<input type="text" id="usuario" class="form-control" placeholder="Usuario" name="usuario" readonly="true" required value="<?php echo $usuario->getUsuario();?>"/>
 											
 										</div>
 
+										<?php $nombres = explode(" ", $usuario->getNombre()); ?>
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group has-feedback">
 													<div class="form-control-feedback">
 														<i class="icon-user-check text-muted"></i>
 													</div>
-													<input id="nombre" type="text" class="form-control" placeholder="Nombre" name="nombre" required />
+													<input id="nombre" type="text" class="form-control" placeholder="Nombre" name="nombre" required value="<?php echo trim($nombres[0]);?>" />
 												</div>
 											</div>
 
@@ -52,12 +59,13 @@
 													<div class="form-control-feedback">
 														<i class="icon-user-check text-muted"></i>
 													</div>
-													<input id="apellido" type="text" class="form-control" placeholder="Apellido" name="apellido" required>
+													<input id="apellido" type="text" class="form-control" placeholder="Apellido" name="apellido" required value="<?php echo trim($nombres[1]);?>">
 													
 												</div>
 											</div>
 										</div>
 
+										<!--
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group has-feedback">
@@ -79,6 +87,7 @@
 												</div>
 											</div>
 										</div>
+										-->
 
 										<div class="row">
 											<div class="col-md-6">
@@ -86,7 +95,7 @@
 													<div class="form-control-feedback">
 														<i class="icon-mention text-muted"></i>
 													</div>
-													<input id="correo" type="email" class="form-control" placeholder="Correo" name="correo" required>
+													<input id="correo" type="email" class="form-control" placeholder="Correo" name="correo" required value="<?php echo $usuario->getCorreo();?>">
 													
 												</div>
 											</div>
@@ -96,7 +105,7 @@
 													<div class="form-control-feedback">
 														<i class="icon-mention text-muted"></i>
 													</div>
-													<input id="confirmar_correo" type="email" class="form-control" placeholder="Confirmar correo" correo" name="confirmar_correo" required>
+													<input id="confirmar_correo" type="email" class="form-control" placeholder="Confirmar correo" correo" name="confirmar_correo" required value="<?php echo $usuario->getCorreo();?>">
 													
 												</div>
 											</div>
@@ -109,7 +118,7 @@
 													<div class="form-control-feedback">
 														<i class="icon-phone text-muted"></i>
 													</div>
-													<input id="tel_fijo" type="text" class="form-control" placeholder="Teléfono fijo" name="tel_fijo">
+													<input id="tel_fijo" type="text" class="form-control" placeholder="Teléfono fijo" name="tel_fijo" value="<?php echo $usuario->getTelFijo();?>">
 													
 												</div>
 											</div>
@@ -119,15 +128,16 @@
 													<div class="form-control-feedback">
 														<i class="icon-mobile text-muted"></i>
 													</div>
-													<input id="tel_celular" type="text" class="form-control" placeholder="Teléfono celular" correo" name="tel_celular">
+													<input id="tel_celular" type="text" class="form-control" placeholder="Teléfono celular" correo" name="tel_celular" value="<?php echo $usuario->getTelCelular();?>">
 													
 												</div>
 											</div>
 										</div>
-										<input type="hidden" name="accion" value="1">
+										<input type="hidden" name="accion" value="3">
+										<input type="hidden" name="id" value="<?php echo $_GET['id'];?>" />
 										<div class="text-right">
 											
-											<button name="submit" type="submit" class="btn bg-teal-400 btn-labeled btn-labeled-right ml-10"><b><i class="icon-plus3"></i></b> Crear Usuario</button>
+											<button name="submit" type="submit" class="btn bg-teal-400 btn-labeled btn-labeled-right ml-10"><b><i class="icon-plus3"></i></b> Actualizar Usuario</button>
 										</div>
 									</div>
 								</div>
