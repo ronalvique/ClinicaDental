@@ -69,7 +69,7 @@
 								</thead>
 								<tbody>
 								<?php
-									$usuarios= $entityManager->getRepository('Usuarios')->findAll(array(), array('nombre'=>'desc'));
+									$usuarios= $entityManager->getRepository('Usuarios')->findAll(array('Estado' => 0));
 									foreach ($usuarios as $row) {
 									 	echo "<tr>";
 									 		echo "<td>" . $row->getId()   . "</td>";

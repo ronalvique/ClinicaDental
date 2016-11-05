@@ -127,7 +127,12 @@
 										<input type="hidden" name="accion" value="1">
 										<div class="text-right">
 											
-											<button name="submit" type="submit" class="btn bg-teal-400 btn-labeled btn-labeled-right ml-10"><b><i class="icon-plus3"></i></b> Crear Usuario</button>
+										
+											<a href="/usuarios.php">
+												<input type="button" class="btn bg-teal-400 btn-labeled btn-labeled-right ml-10" value="Cancelar" />
+											</a>
+
+											<button id="form_nuevo_usuario_enviar" name="submit" type="submit" class="btn bg-teal-400 btn-labeled btn-labeled-right ml-10"><b><i class="icon-plus3"></i></b> Crear Usuario</button>
 										</div>
 									</div>
 								</div>

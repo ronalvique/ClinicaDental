@@ -10,99 +10,103 @@ $(document).ready(function(){
 	* 2.0 -> cambio para validar si el plugin existe.
 	*/
 	if ($.fn.validate) {
-		$("#form_nuevo_usuario").validate({
-			ignore: ":hidden",
-			rules: {
-					usuario: {
-						required:    true,
-						minlength:   6				
-					},
-					nombre:{
-						required:    true,
-						minlength:   3,
-						lettersonly: true
-					},
-					apellido:{
-						required:    true,
-						minlength:   3,
-						lettersonly: true
-					},
-					contrasenia:{
-						required:    true,
-						minlength:   6
+		$("#form_nuevo_usuario_enviar").click(function() {
+			/* Act on the event */
+		
+			$("#form_nuevo_usuario").validate({
+				ignore: ":hidden",
+				rules: {
+						usuario: {
+							required:    true,
+							minlength:   6				
+						},
+						nombre:{
+							required:    true,
+							minlength:   3,
+							lettersonly: true
+						},
+						apellido:{
+							required:    true,
+							minlength:   3,
+							lettersonly: true
+						},
+						contrasenia:{
+							required:    true,
+							minlength:   6
 
-					},
-					confirmar_contrasenia:{
-						required:    true,
-						minlength:   6,
-						equalTo:     "#contrasenia"
-					},
-					correo:{
-						required:    true,
-						email:       true,
-					},
-					confirmar_correo:{
-						required:    true,
-						email:       true,
-						equalTo:     "#correo"
-					}
-			},
-			messages: {
-					usuario: {
-						required:    "Este campo es requerido",
-						minlength:   "El usuario debe tener mas de 6 caracteres"
-					},
-					nombre: {
-						required:    "Este campo es requerido",
-						minlength:   "El nombre debe tener mas de 3 caracteres",
-						lettersonly: "El campo solo debe tener letras sin espacios"
-					},
-					apellido:{
-						required:    "Este campo es requerido",
-						minlength:   "El nombre debe tener mas de 3 caracteres",
-						lettersonly: "El campo solo debe tener letras sin espacios"
-					},
-					contrasenia:{
-						required:    "Este campo es requerido",
-						minlength:   "El nombre debe tener mas de 6 caracteres"
+						},
+						confirmar_contrasenia:{
+							required:    true,
+							minlength:   6,
+							equalTo:     "#contrasenia"
+						},
+						correo:{
+							required:    true,
+							email:       true,
+						},
+						confirmar_correo:{
+							required:    true,
+							email:       true,
+							equalTo:     "#correo"
+						}
+				},
+				messages: {
+						usuario: {
+							required:    "Este campo es requerido",
+							minlength:   "El usuario debe tener mas de 6 caracteres"
+						},
+						nombre: {
+							required:    "Este campo es requerido",
+							minlength:   "El nombre debe tener mas de 3 caracteres",
+							lettersonly: "El campo solo debe tener letras sin espacios"
+						},
+						apellido:{
+							required:    "Este campo es requerido",
+							minlength:   "El nombre debe tener mas de 3 caracteres",
+							lettersonly: "El campo solo debe tener letras sin espacios"
+						},
+						contrasenia:{
+							required:    "Este campo es requerido",
+							minlength:   "El nombre debe tener mas de 6 caracteres"
 
-					},
-					confirmar_contrasenia:{
-						required:    "Este campo es requerido",
-						minlength:   "El nombre debe tener mas de 6 caracteres",
-						equalTo:     "Las contraseñas no son identicas"
+						},
+						confirmar_contrasenia:{
+							required:    "Este campo es requerido",
+							minlength:   "El nombre debe tener mas de 6 caracteres",
+							equalTo:     "Las contraseñas no son identicas"
 
-					},
-					correo:{
-						required:    "Este campo es requerido",
-						email:       "Introduce un correo valido"				
-					},
-					confirmar_correo:{
-						required:    "Este campo es requerido",
-						email:       "Introduce un correo valido",
-						equalTo:     "Los correos no son identicos"
-					}
-			},
-			submitHandler: function (form) {
-	             $.ajax({
-	                 type: "POST",
-	                 url: "/servicios/service_usuario.php",
-	                 data: $(form).serialize(),
-	                 dataType: 'json',
-	                 success: function (e) {
-	                 	
-	                     if(e.hasOwnProperty('mensajes'))
-	                     {
-	                     	alert("Usuario Creado: " + e.mensajes);
-	                     	window.location.href = "/usuarios.php"
-	                     } else{
-	                     	alert("Error: \n" + e.error);
-	                     }
+						},
+						correo:{
+							required:    "Este campo es requerido",
+							email:       "Introduce un correo valido"				
+						},
+						confirmar_correo:{
+							required:    "Este campo es requerido",
+							email:       "Introduce un correo valido",
+							equalTo:     "Los correos no son identicos"
+						}
+				},
+				submitHandler: function (form) {
+		             $.ajax({
+		                 type: "POST",
+		                 url: "/servicios/service_usuario.php",
+		                 data: $(form).serialize(),
+		                 dataType: 'json',
+		                 success: function (e) {
+		                 	
+		                     if(e.hasOwnProperty('mensajes'))
+		                     {
+		                     	alert("Usuario Creado: " + e.mensajes);
+		                     	window.location.href = "/usuarios.php"
+		                     } else{
+		                     	alert("Error: \n" + e.error);
+		                     }
 
-	                 }
-	             });
-	             return false; // required to block normal submit since you used ajax
-	         }
+		                 }
+		             });
+		             return false; // required to block normal submit since you used ajax
+		         }
+			});
 		});
 	}
 
