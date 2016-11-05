@@ -49,11 +49,32 @@
 			                	</ul>
 		                	</div>
 						</div>
-						<!--
+						
 						<div class="panel-body">
-							Example of a basic <code>responsive</code> table. Create responsive tables by wrapping any <code>.table</code> in <code>.table-responsive</code> to make them scroll horizontally on small devices (under 768px). When viewing on anything larger than 768px wide, you will not see any difference in these tables.
+							<div class="table-responsive" style="border:none;">
+								<?php
+									 function filtrar($valor){
+									 	
+									 	if (isset($_POST['submit'])){
+									 		if (strcasecmp($valor, $_POST['filtroSelect']) == 0){
+									 			echo 'selected="selected"';
+									 		}
+									 	}
+									 }
+								?>
+								<form action="" name="form_filtro_usuarios" method="Post">
+									<span >Filtros de busqueda:</span>
+									<select name="filtroSelect">
+									  <option <?php filtrar("2"); ?>value="2">Todos</option>
+									  <option <?php filtrar("1"); ?> value="1">Activos</option>
+									  <option <?php filtrar("0"); ?> value="0">Inactivos</option>
+									</select>
+									<br><br>
+									<input type="submit" name="submit" value="Filtar" style="width: 100px;">
+								</form>
+							</div>
 						</div>
-						-->
+						
 
 						<div class="table-responsive">
 							<table class="table tabla_usuarios">
@@ -69,7 +90,19 @@
 								</thead>
 								<tbody>
 								<?php
-									$usuarios= $entityManager->getRepository('Usuarios')->findAll(array('Estado' => 0));
+									
+									if (isset($_POST['submit'])){
+										
+										if (strcasecmp($_POST['filtroSelect'],1)== 0 || strcasecmp($_POST['filtroSelect'],0)== 0){
+											$usuarios= $entityManager->getRepository('Usuarios')->findby(array('estado' => $_POST['filtroSelect']));
+										}else{
+											$usuarios= $entityManager->getRepository('Usuarios')->findAll();
+										}
+									}else{
+										$usuarios= $entityManager->getRepository('Usuarios')->findby(array('estado' => 1));
+									}
+
+									
 									foreach ($usuarios as $row) {
 									 	echo "<tr>";
 									 		echo "<td>" . $row->getId()   . "</td>";
@@ -113,6 +146,9 @@
 									
 								</tbody>
 							</table>
+							<br>
+							<br>
+							<br>
 						</div>
 					</div>
 					<!-- /basic responsive table -->

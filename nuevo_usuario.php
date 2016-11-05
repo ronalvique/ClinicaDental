@@ -43,7 +43,7 @@
 													<div class="form-control-feedback">
 														<i class="icon-user-check text-muted"></i>
 													</div>
-													<input id="nombre" type="text" class="form-control" placeholder="Nombre" name="nombre" required />
+													<input id="nombre" type="text" class="form-control" placeholder="Nombre" name="nombre" required minlength="3" />
 												</div>
 											</div>
 
@@ -52,7 +52,7 @@
 													<div class="form-control-feedback">
 														<i class="icon-user-check text-muted"></i>
 													</div>
-													<input id="apellido" type="text" class="form-control" placeholder="Apellido" name="apellido" required>
+													<input id="apellido" type="text" class="form-control" placeholder="Apellido" name="apellido" required minlength="3">
 													
 												</div>
 											</div>
