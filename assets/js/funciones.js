@@ -89,7 +89,7 @@ $(document).ready(function(){
 				submitHandler: function (form) {
 		             $.ajax({
 		                 type: "POST",
-		                 url: "./servicios/service_usuario.php",
+		                 url: document.URL.substr(0,document.URL.lastIndexOf('/')) + "/servicios/service_usuario.php",
 		                 data: $(form).serialize(),
 		                 dataType: 'json',
 		                 success: function (e) {
