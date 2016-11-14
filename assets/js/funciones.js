@@ -201,6 +201,8 @@ $(document).ready(function(){
 	 * autor: Ronal vasquez
 	*/
 	if ($.fn.validate) {
+		var newURL = window.location.protocol + "//" + window.location.host + "/";
+		console.log(newURL);
 		$("#form_modificacion_usuario").validate({
 			ignore: ":hidden",
 			rules: {
@@ -256,7 +258,7 @@ $(document).ready(function(){
 			submitHandler: function (form) {
 	            $.ajax({
 	                 type: "POST",
-	                 url: "/servicios/service_usuario.php",
+	                 url: document.URL.substr(0,document.URL.lastIndexOf('/')) + "/servicios/service_usuario.php",
 	                 data: $(form).serialize(),
 	                 dataType: 'json',
 	                 success: function (e) {
