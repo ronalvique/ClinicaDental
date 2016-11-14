@@ -163,7 +163,7 @@ $(document).ready(function(){
 			if(respuesta == true){
 				$.ajax({
 	                 type: "POST",
-	                 url: "/servicios/service_usuario.php",
+	                 url: document.URL.substr(0,document.URL.lastIndexOf('/')) + "/servicios/service_usuario.php",
 	                 data: {accion:2,id:codigo},
 	                 dataType: 'json',
 	                 success: function (e) {
