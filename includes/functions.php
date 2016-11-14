@@ -22,12 +22,12 @@ define( 'SITE_URL', siteURL() );
  * en el header, desde la funcion gancho.
 */
 function pluginValidaciones(){
- 	$url_acutal =  $_SERVER['PHP_SELF'];
+ 	$url_acutal =  basename($_SERVER['PHP_SELF']);
  	if (
-        strcasecmp($url_acutal, "/nuevo_usuario.php") == 0 ||
-        strcasecmp($url_acutal, "/establecimientos.php") == 0 ||
-        strcasecmp($url_acutal, "/modificacion_usuario.php") == 0 ||
-        strcasecmp($url_acutal, "/login.php") == 0
+        strcasecmp($url_acutal, "nuevo_usuario.php") == 0 ||
+        strcasecmp($url_acutal, "establecimientos.php") == 0 ||
+        strcasecmp($url_acutal, "modificacion_usuario.php") == 0 ||
+        strcasecmp($url_acutal, "login.php") == 0
      ){
 
  		echo "\n";
