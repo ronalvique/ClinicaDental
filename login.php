@@ -40,10 +40,12 @@ if (isset($_POST['submit'])){
 		if( password_verify($_POST['contrasenia'],$usuario->getContrasenia()) ){
 			session_start();
 			$_SESSION['usuario'] = $_POST['usuario'];
-			header("Location: ./index.php");
+			$ruta = rutaw("index.php");
+			header("Location: $ruta");
 			exit();
 		}else{
-			header("Location: ./login.php");
+			$ruta = rutaw("login.php");
+			header("Location: $ruta");
 			exit();
 		}
 	}
