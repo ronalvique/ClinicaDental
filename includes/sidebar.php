@@ -34,14 +34,13 @@
 
 								<!-- Main -->
 								<li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
+
 								<li class="active"><a href="/index.php"><i class="icon-home4"></i> <span>Inicio</span></a></li>
-								<li>
-									<a href="#"><i class="icon-stack2"></i> <span>Usuarios</span></a>
-									<ul>
-										<li><a href="/usuarios.php">Lista de usuarios</a></li>
-										<li><a href="/nuevo_usuario.php">Fixed navbar &amp; sidebar</a></li>
-									</ul>
-								</li>
+
+								<li class=""><a href="<?php echo ruta("usuarios.php");?>"><i class="icon-stack2"></i> <span>usuarios</span></a></li>
+
+								
+
 								<li>
 									<a href="#"><i class="icon-copy"></i> <span>Layouts</span></a>
 									<ul>

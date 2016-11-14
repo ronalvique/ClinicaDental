@@ -84,15 +84,36 @@ function verificarContrasenia($contrasenia,$contrasenia_guardada){
  * ya que se ejecutara en el gancho 
 */
  function logueado(){
-  session_start();
-  $url_acutal =  $_SERVER['PHP_SELF'];
-  if (strcasecmp($url_acutal, "/login.php") <> 0){
-    if ( !isset($_SESSION['usuario']) )
-      header('Location: /login.php');
-  }
+ 	session_start();
+  	$url_acutal =  basename($_SERVER['PHP_SELF']);
+
+  	
+  	if (strcasecmp($url_acutal, "login.php") <> 0) {
+    	if ( !isset($_SESSION['usuario']) ){
+    		$ruta = ruta("login.php");
+      		header("Location: $ruta");
+   	 	}
+ 	}
+ 	
  }
 
- 
+ /*
+  * Funcion que devuelve el path de instalacion
+  * Especificar el directorio de instalacion de
+  * el sistema
+ */
+function ruta($url){
+	$host  = $_SERVER['HTTP_HOST'];
+	$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+	$extra = $url;
+
+	$tipo = 'http';
+	if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+    	$tipo = 'https';
+	}
+
+	return $tipo . "://" . $host . $uri . "/" . $url; 
+}
 
 /*
  * Gancho para ejecutar las funciones
@@ -101,5 +122,5 @@ function verificarContrasenia($contrasenia,$contrasenia_guardada){
 */
  function wp_head(){
  	pluginValidaciones();
-  logueado();
+   logueado();
  }

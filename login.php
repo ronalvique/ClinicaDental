@@ -1,4 +1,18 @@
 <?php
+
+function rutaw($url){
+	$host  = $_SERVER['HTTP_HOST'];
+	$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+	$extra = $url;
+
+	$tipo = 'http';
+	if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+    	$tipo = 'https';
+	}
+
+	return $tipo . "://" . $host . $uri . "/" . $url; 
+}
+
 require 'bootstrap.php';
 require_once 'src/Usuarios.php';
 

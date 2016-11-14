@@ -42,7 +42,7 @@
 							<h5 class="panel-title">Listado de Usuarios</h5>
 							<div class="heading-elements">
 								<ul class="icons-list">
-								    <li><a href="/nuevo_usuario.php" class="label label-success" style="padding: 5px;"> Nuevo Usuario</a></li>
+								    <li><a href="/nuevo_usuario.php" class="btn btn-info" style="padding: 5px;"> Nuevo Usuario</a></li>
 			                		<li><a data-action="collapse"></a></li>
 			                		<!--<li><a data-action="reload"></a></li>-->
 			                		<!--<li><a data-action="close"></a></li>-->
@@ -51,6 +51,10 @@
 						</div>
 						
 						<div class="panel-body">
+
+							
+
+
 							<div class="table-responsive" style="border:none;">
 								<?php
 									 function filtrar($valor){
@@ -64,13 +68,16 @@
 								?>
 								<form action="" name="form_filtro_usuarios" method="Post">
 									<span >Filtros de busqueda:</span>
-									<select name="filtroSelect">
+									<select  class="form-group" name="filtroSelect">
 									  <option <?php filtrar("2"); ?>value="2">Todos</option>
 									  <option <?php filtrar("1"); ?> value="1">Activos</option>
 									  <option <?php filtrar("0"); ?> value="0">Inactivos</option>
 									</select>
-									<br><br>
-									<input type="submit" name="submit" value="Filtar" style="width: 100px;">
+									
+									<div class="input-group-btn">
+										<!--<button type="button" class="btn btn-info" id="remove-all">Remove options</button>-->
+										<input type="submit" name="submit" value="Filtar" class="btn btn-info">
+									</div>
 								</form>
 							</div>
 						</div>
